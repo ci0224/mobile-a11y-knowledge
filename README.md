@@ -34,3 +34,16 @@ Applied this change, I am able to direct select all buttons on screen. However t
 
 #### Failed attempts
 1. z-index, does not affect sequence or playpause blocking later elements
+
+
+### Override tap action of an UI in swift
+
+``` swift
+    @objc func handleTap() {
+        // expected action here
+    }
+    ...
+
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+    target_button.addGestureRecognizer(tapGesture) // overwrite tap action
+```
