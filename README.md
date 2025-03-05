@@ -46,3 +46,22 @@ User cannot direct select a button(one finger single tap) in VoiceOver mode if t
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
     target_button.addGestureRecognizer(tapGesture) // overwrite tap action
 ```
+
+## Android Override Element Type
+
+Type override will allow TalkBack to read the element type correspondingly when appropriate. 
+
+> For example we might have a nice view component, which has onTap, containing many element, but system does not know this is a button.
+> And a type override of Button will allow the TalkBack to recognize this is a Button.
+
+```kt
+ViewCompat.setAccessibilityDelegate(elementToBeOverridden, object : AccessibilityDelegateCompat() {
+     override fun onInitializeAccessibilityNodeInfo(
+         host: View,
+         info: AccessibilityNodeInfoCompat
+     ) {
+         super.onInitializeAccessibilityNodeInfo(host, info)
+         info.className = Button::class.java.name // Mimic a Button class
+     }
+ })
+```
