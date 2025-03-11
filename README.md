@@ -91,5 +91,7 @@ ViewCompat.setAccessibilityDelegate(elementToBeOverridden, object : Accessibilit
     }
 ```
 
-Known issue with isExternalKeyboardConnected(): this function will return false on virtual external keyboard(not too bad), for example connect Android device to laptop using [scrcpy](https://github.com/Genymobile/scrcpy) and using keyboard of laptop to control the Android devic.
-If we remove the condition check of virtual, ` !device.isVirtual `, this funciton will always return true(very bad!).
+Known issue with isExternalKeyboardConnected():
+
+1. this function will return false on virtual external keyboard(not too bad), for example connect Android device to laptop using [scrcpy](https://github.com/Genymobile/scrcpy) and using keyboard of laptop to control the Android devic.
+2. If we remove the condition check of virtual, ` !device.isVirtual `, this funciton will always return true(very bad!).
