@@ -57,6 +57,7 @@ Type override will allow TalkBack to read the element type correspondingly when 
 > And a type override of Button will allow the TalkBack to recognize this is a Button.
 
 ```kotlin
+// kotlin
 ViewCompat.setAccessibilityDelegate(elementToBeOverridden, object : AccessibilityDelegateCompat() {
      override fun onInitializeAccessibilityNodeInfo(
          host: View,
@@ -66,6 +67,14 @@ ViewCompat.setAccessibilityDelegate(elementToBeOverridden, object : Accessibilit
          info.className = Button::class.java.name // Mimic a Button class
      }
  })
+// java
+elementToBeOverridden.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+      @Override
+      public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
+          super.onInitializeAccessibilityNodeInfo(host, info);
+          info.setClassName(Button.class.getName());
+      }
+  });
 ```
 
 ## Android accessibility / keyboard mode detection
