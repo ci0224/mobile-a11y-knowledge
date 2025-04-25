@@ -49,6 +49,21 @@ User cannot direct select a button(one finger single tap) in VoiceOver mode if t
     target_button.addGestureRecognizer(tapGesture) // overwrite tap action
 ```
 
+### Override Role of Link
+
+When handling with iOS text view that has link, we have to `addattributedString.addAttribute(.link, value: url, range: range)` to have visual indication of a link, and be interactive as a link.
+
+But in order to override it as button for voice over what you have to do is to add 
+
+```swift
+   self.isAccessibilityElement = true
+   self.accessibilityValue = message
+   self.accessibilityTraits = .button
+```
+
+if you override self.accessibilityLabel, it will read “<text>, link, button”
+but if you override self.accessibilityValue it will only read “<text>, button” as we expected
+
 ## Android Override Element Type
 
 Type override will allow TalkBack to read the element type correspondingly when appropriate. 
